@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>HELLO WORLD!</h1>
+<h2>{{block.super}}</h2>
+<p>THIS THE DJANGO <code>{% verbatim %} {{ html_var }} {% endverbatim %}</code> PROJECT</p>
+<p>
+{% if html_var %}
+RANDOM NUM IS {{ num }}
+{% endif %}
+ </p>
+<p>
+{% for some_item in some_list %}
+    {% if some_item|divisibleby:"2" %}
+    EVEN NUMBER
+    {% endif %}
+{{ some_item }}</br>
+{% endfor %}
+</p>
+<p> this is {{some_item}}</p>{% endblock content %}
