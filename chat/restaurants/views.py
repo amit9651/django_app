@@ -1,4 +1,4 @@
-
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
@@ -15,11 +15,14 @@ def restaurants_listview(request):
     return render(request,template_name,context)
 
 
-class IndianView(ListView):
-      queryset=RestaurantLocation.objects.filter(category__exact='Indain')
-      template_name='restaurants/restaurants_list.html'
-
-      
-class AmericanView(ListView):
-      queryset=RestaurantLocation.objects.filter(category__exact='American')
-      template_name='restaurants/restaurants_list.html'
+class RestaurantListView(ListView):
+    def get_queryset(self):
+        slug = self.kwargs.get("slug")
+        if slug:
+            queryset = RestaurantLocation.objects.filter(
+            Q(category_iexact = slug) |
+            Q(category_icontains=slug)
+            )
+        else:
+            queryset = RestaurantLocation.objects.all()
+            return queryset
