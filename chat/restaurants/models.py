@@ -9,6 +9,7 @@ class RestaurantLocation(models.Model):
     timestamp  = models.DateTimeField(auto_now_add=True)
     updated    = models.DateTimeField(auto_now=True)
     slug       =models.SlugField(null=True,blank=True)
+    starting_price = models.IntegerField(null=True,blank=True,max_length=10)
     #my_date_field = models.DateField(auot_now=False,auto_now_add=False)
     def __str__(self):
                return self.name
