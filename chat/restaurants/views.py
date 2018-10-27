@@ -5,6 +5,7 @@ from django.views import View
 from django.views.generic import TemplateView,ListView,DetailView
 from .models import RestaurantLocation
 from .forms import RestaurantCreateForm
+from django import decorators
 
 # Create your views here.
 
